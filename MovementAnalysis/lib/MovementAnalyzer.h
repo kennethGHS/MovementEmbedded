@@ -2,8 +2,8 @@
 // Created by kenneth on 2/6/21.
 //
 
-#ifndef UNTITLED1_MOVEMENTANALIZER_H
-#define UNTITLED1_MOVEMENTANALIZER_H
+#ifndef UNTITLED1_MOVEMENTANALYZER_H
+#define UNTITLED1_MOVEMENTANALYZER_H
 #include <iostream>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/videoio.hpp>
@@ -48,4 +48,4 @@ private:
 };
 
 
-#endif //UNTITLED1_MOVEMENTANALIZER_H
+#endif //UNTITLED1_MOVEMENTANALYZER_H

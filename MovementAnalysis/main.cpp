@@ -1,4 +1,4 @@
-#include "./lib/MovementAnalizer.h"
+#include "./lib/MovementAnalyzer.h"
 #include "./lib/HttpRequests.h"
 using namespace std;
 //gst-launch-1.0 -v v4l2src \

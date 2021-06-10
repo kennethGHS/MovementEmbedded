@@ -3,7 +3,7 @@
 //
 
 #include <sys/stat.h>
-#include "../lib/MovementAnalizer.h"
+#include "../lib/MovementAnalyzer.h"
 #include "../lib/HttpRequests.h"
 MovementAnalyzer::MovementAnalyzer(const string pipe, int intervalS, bool detected) : pipe(pipe),
                                                                                        frame_intervals(intervalS),
