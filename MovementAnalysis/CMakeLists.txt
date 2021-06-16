@@ -9,3 +9,5 @@ add_executable(detection main.cpp src/MovementAnalyzer.cpp lib/MovementAnalyzer.
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 target_link_libraries(detection ${OpenCV_LIBS}  Threads::Threads ${CURL_LIBRARIES})
+
+install(TARGETS detection DESTINATION bin)
