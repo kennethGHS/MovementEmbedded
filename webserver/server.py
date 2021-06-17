@@ -37,7 +37,7 @@ class Server(BaseHTTPRequestHandler):
     def do_GET(self):
         path = self.path.split("?")[0]
         last_word = self.path.split("/")
-        last_word = last_word[len(last_word)]
+        last_word = last_word[len(last_word) - 1]
         if last_word in self.get_file_list():
             self.send_file(last_word)
         elif self.path == "/":
@@ -68,7 +68,7 @@ class Server(BaseHTTPRequestHandler):
         if self.path == "/api/picture":
             filepath = "picture" + str(random()) +".jpg"
             while filepath in self.get_file_list():
-                filepath =  "picture" + random() +".jpg"
+                filepath =  "picture" + str(random()) +".jpg"
             print(filepath)
             self.receive_file(filepath, put_data)
         else:
