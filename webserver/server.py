@@ -9,6 +9,7 @@ from random import seed
 from random import random
 import json
 seed(1)
+from datetime import datetime
 
 def save_token(token):
     path = "tokens.json"
@@ -66,9 +67,13 @@ class Server(BaseHTTPRequestHandler):
         # Get the data
         put_data = self.rfile.read(content_length)
         if self.path == "/api/picture":
-            filepath = "picture" + str(random()) +".jpg"
+            now = datetime.now()
+            dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+            filepath =dt_string  +".jpg"
             while filepath in self.get_file_list():
-                filepath =  "picture" + str(random()) +".jpg"
+                now = datetime.now()
+                dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+                filepath =dt_string  +".jpg"
             print(filepath)
             self.receive_file(filepath, put_data)
         else:
@@ -184,8 +189,6 @@ class Server(BaseHTTPRequestHandler):
 if __name__ == '__main__':
     http_server = HTTPServer(('', host_port), Server)
     print("Server started on port: %s" % host_port)
-    # print("test %s" % [f for f in listdir("./") if isfile(join("./", f))])
-
     try:
         http_server.serve_forever()
     except KeyboardInterrupt:
