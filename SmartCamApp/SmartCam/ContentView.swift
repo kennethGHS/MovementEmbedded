@@ -6,16 +6,21 @@
 //
 
 import SwiftUI
-import AVKit
 
 struct ContentView: View {
     var body: some View {
-        let livestream = AVPlayer(url: URL(string: "http://192.168.100.54:8000/playlist.m3u8")!)
-        VideoPlayer(player: livestream)
-            .frame(height: 400)
-            .onAppear() {
-                livestream.play()
+        TabView {
+        LiveView()
+            .tabItem {
+                Text("Live")
+                Image(systemName: "video.fill")
             }
+        DetectionView()
+            .tabItem {
+                Text("Movement detection")
+                Image(systemName: "person.fill")
+            }
+        }
     }
 }
 
