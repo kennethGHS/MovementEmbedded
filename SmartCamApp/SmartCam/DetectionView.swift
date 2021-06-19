@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct DetectionView: View {
-    @StateObject var httpRequest = RequestManager()
+    @StateObject var httpRequests = RequestManager()
     var body: some View {
-        List (httpRequest.detectionList, id: \.self) { imageName in
-            Text(imageName)
-        }
+        VStack(alignment: .leading, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
+            Image(uiImage: httpRequests.currentImage!)
+                .resizable()
+                .scaledToFit()
+            
+            List (httpRequests.detectionList, id: \.self) { imageName in
+                Button(action: {httpRequests.getImage(name: imageName)}, label: {
+                    Text(imageName)
+                })
+            }
+        })
     }
 }
 

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		294013C3267D4C9B0043CBCF /* LiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294013C2267D4C9B0043CBCF /* LiveView.swift */; };
 		294013C5267D4CE90043CBCF /* DetectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294013C4267D4CE90043CBCF /* DetectionView.swift */; };
-		294013C9267D50970043CBCF /* DetectionAPIList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294013C8267D50970043CBCF /* DetectionAPIList.swift */; };
 		294013CB267D51440043CBCF /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294013CA267D51440043CBCF /* RequestManager.swift */; };
 		295DE099267978CC0031795D /* SmartCamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295DE098267978CC0031795D /* SmartCamApp.swift */; };
 		295DE09B267978CC0031795D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295DE09A267978CC0031795D /* ContentView.swift */; };
@@ -20,7 +19,6 @@
 /* Begin PBXFileReference section */
 		294013C2267D4C9B0043CBCF /* LiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveView.swift; sourceTree = "<group>"; };
 		294013C4267D4CE90043CBCF /* DetectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectionView.swift; sourceTree = "<group>"; };
-		294013C8267D50970043CBCF /* DetectionAPIList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectionAPIList.swift; sourceTree = "<group>"; };
 		294013CA267D51440043CBCF /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		295DE095267978CC0031795D /* SmartCam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartCam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		295DE098267978CC0031795D /* SmartCamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartCamApp.swift; sourceTree = "<group>"; };
@@ -69,7 +67,6 @@
 				295DE09C267978CF0031795D /* Assets.xcassets */,
 				295DE0A1267978CF0031795D /* Info.plist */,
 				295DE09E267978CF0031795D /* Preview Content */,
-				294013C8267D50970043CBCF /* DetectionAPIList.swift */,
 				294013CA267D51440043CBCF /* RequestManager.swift */,
 			);
 			path = SmartCam;
@@ -157,7 +154,6 @@
 				295DE09B267978CC0031795D /* ContentView.swift in Sources */,
 				294013CB267D51440043CBCF /* RequestManager.swift in Sources */,
 				295DE099267978CC0031795D /* SmartCamApp.swift in Sources */,
-				294013C9267D50970043CBCF /* DetectionAPIList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

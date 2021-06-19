@@ -11,6 +11,7 @@ import Combine
 
 class RequestManager : ObservableObject {
     @Published var detectionList = ["No motion detected"]
+    @Published var currentImage = UIImage(named: "Placeholder")
     
     init () {
         guard let url = URL(string: "http://192.168.100.62:8000/api/images") else { return }
@@ -18,6 +19,16 @@ class RequestManager : ObservableObject {
             let detectionList = try! JSONDecoder().decode([String].self, from: data!)
             DispatchQueue.main.async {
                 self.detectionList = detectionList
+            }
+        }.resume()
+    }
+    
+    func getImage(name: String) {
+        guard let url = URL(string: "http://192.168.100.62:8000/api/" + name) else { return }
+        URLSession.shared.dataTask(with: url) { data, _, _ in
+            let image = UIImage(data: data!)
+            DispatchQueue.main.async {
+                self.currentImage = image
             }
         }.resume()
     }
