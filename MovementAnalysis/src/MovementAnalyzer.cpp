@@ -5,7 +5,7 @@
 #include <sys/stat.h>
 #include "../lib/MovementAnalyzer.h"
 #include "../lib/HttpRequests.h"
-#include <gpio.h>
+#include "gpio.h"
 
 
 MovementAnalyzer::MovementAnalyzer(const string pipe, int intervalS, bool detected) : pipe(pipe),
@@ -63,6 +63,7 @@ void MovementAnalyzer::analyzeImages() {
     int frameCount = 0;
     Mat frame, fgMask;
     int movements = 0;
+    initSevenSegmentDisplay(2, 3, 4, 5, 6, 7, 8);
     while (true) {
         frameCount+=1;
 
