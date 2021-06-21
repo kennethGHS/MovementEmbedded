@@ -109,5 +109,3 @@ void MovementAnalyzer::analyzeImages() {
 
     }
 }
-
-}
