@@ -19,8 +19,9 @@ MovementAnalyzer::MovementAnalyzer(const string pipe, int intervalS, bool detect
         //error in opening the video input
         cerr << "Unable to open: " << endl;
     }
+    initSevenSegmentDisplay(2, 3, 4, 5, 6, 7, 8);
+    movements = 0;
     this->semaphore = static_cast<sem_t *>(malloc(sizeof(sem_t)));
-
     sem_init(semaphore, 0, 1);
 }
 
@@ -64,8 +65,6 @@ bool MovementAnalyzer::isDetected() const {
 void MovementAnalyzer::analyzeImages() {
     int frameCount = 0;
     Mat frame, fgMask;
-    int movements = 0;
-    initSevenSegmentDisplay(2, 3, 4, 5, 6, 7, 8);
     while (true) {
         frameCount+=1;
 
@@ -101,6 +100,7 @@ void MovementAnalyzer::analyzeImages() {
             string filename = "../Image/newPicture.jpg";
             imwrite(filename,frame);
             HttpRequests::sendPicture(filename);
+            movements += 1;
             if (movements >= 10){
                 movements = 0;
             }

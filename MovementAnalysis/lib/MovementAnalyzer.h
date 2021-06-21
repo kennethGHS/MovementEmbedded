@@ -42,9 +42,7 @@ public:
 private:
     Ptr<BackgroundSubtractor> pBackSub;
     VideoCapture * capture;
-
-
-
+    int movements;
 };
 
 
