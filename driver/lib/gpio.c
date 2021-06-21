@@ -3,11 +3,11 @@
 #include <err.h> //error handling
 #include <fcntl.h> //file ops
 #include <unistd.h> //usleep
-
+#include <stdio.h>
 
 
 //Static base
-static unsigned GPIO_BASE = 0xfe200000;
+static unsigned GPIO_BASE = 0x3f200000;
 
 //Registers pointers
 volatile unsigned int * gpset0;
@@ -83,20 +83,16 @@ void gpioSetMode(int gpioPin, unsigned char mode){
 	int extendedMode = mode; //make 32 bit
 	int shift = 0; //amount to shift according to GPIOn
 	if (gpioPin >= 2 && gpioPin <= 9){
-		printf("gpioPin %s", gpioPin);
 		shift = gpioPin * 3;
 		*gpfsel0 = *gpfsel0 | (extendedMode << shift); //shift to position and add
-		printf("Value of gpfsel for pin %d %08x\n", (gpioPin, *gpfsel0));
 	}else if (gpioPin >= 10 && gpioPin <= 19){
 		gpioPin = gpioPin - 10;
 		shift = gpioPin * 3;
 		*gpfsel1 = *gpfsel1 | (extendedMode << shift);
-		printf("Value of gpfsel for pin %d %08x\n", (gpioPin, *gpfsel0));
 	}else if (gpioPin >= 20 && gpioPin <= 27){
 		gpioPin = gpioPin - 20;
 		shift = gpioPin * 3;
 		*gpfsel2 = *gpfsel2 | (extendedMode << shift);
-		printf("Value of gpfsel for pin %d %08x\n", (gpioPin, *gpfsel0));
 	}
 }
 
@@ -104,11 +100,11 @@ void gpioSetMode(int gpioPin, unsigned char mode){
 void gpioWrite(int gpioPin, unsigned char bit){
 	int write_value = 0x1;
 	if (bit) {
-		*gpset0 = *gpset0 | (write_value << gpioPin);
+		*gpset0 = write_value << gpioPin;
 		printf("Value of pin %d set to %08x\n", (gpioPin, *gpset0));
 } //sets bit
 	else  {
-		*gpclr0 = *gpclr0  | (write_value << gpioPin);
+		*gpclr0 = write_value << gpioPin;
 		printf("Value of pin %d set to %08x\n", (gpioPin, *gpclr0));
 } //clears bit
 
