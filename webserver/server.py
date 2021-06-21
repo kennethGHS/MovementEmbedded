@@ -184,7 +184,9 @@ class Server(BaseHTTPRequestHandler):
         self.end_headers()
 
     def get_file_list(self):
-        return [f for f in listdir("./") if isfile(join("./", f))]
+        filelist = [f for f in listdir("./") if isfile(join("./", f))]
+        filelist.remove("server.py")
+        return filelist
 
 if __name__ == '__main__':
     http_server = HTTPServer(('', host_port), Server)
