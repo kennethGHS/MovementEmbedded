@@ -109,7 +109,7 @@ void gpioWrite(int gpioPin, unsigned char bit){
 } //sets bit
 	else  {
 		*gpclr0 = *gpclr0  | (write_value << gpioPin);
-		printf("Value of pin %d set to %08x\n", (gpioPin, *gpset0));
+		printf("Value of pin %d set to %08x\n", (gpioPin, *gpclr0));
 } //clears bit
 
 }
