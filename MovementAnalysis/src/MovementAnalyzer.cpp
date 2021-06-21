@@ -5,7 +5,7 @@
 #include <sys/stat.h>
 #include "../lib/MovementAnalyzer.h"
 #include "../lib/HttpRequests.h"
-#include "gpio.h"
+#include "../lib/gpio.h"
 
 
 MovementAnalyzer::MovementAnalyzer(const string pipe, int intervalS, bool detected) : pipe(pipe),
