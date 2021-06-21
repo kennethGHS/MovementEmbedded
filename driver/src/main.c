@@ -4,23 +4,16 @@
 int main(){
 	// Set GPIOs
 	gpioInitPtrs();
-	gpioSetMode(2, 1);
-	gpioSetMode(3, 1);
-	gpioSetMode(4, 1);
-	gpioSetMode(5, 1);
-	gpioSetMode(6, 1);
-	gpioSetMode(7, 1);
-	gpioSetMode(8, 1);
+	initSevenSegmentDisplay(2, 3, 4, 5, 6, 7, 8);
 	
 	while(1){
 		sevenSegmentWrite('5');
-		usleep(1000);
+		usleep(1000000);
 		sevenSegmentWrite('0');
-		usleep(1000);
+		usleep(1000000);
 		sevenSegmentWrite('5');
-		usleep(1000);
+		usleep(1000000);
 	}
-	
 	
 	return 0;
 }
