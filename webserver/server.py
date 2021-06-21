@@ -68,11 +68,11 @@ class Server(BaseHTTPRequestHandler):
         put_data = self.rfile.read(content_length)
         if self.path == "/api/picture":
             now = datetime.now()
-            dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+            dt_string = now.strftime("%d-%m-%Y_%H:%M:%S")
             filepath =dt_string  +".jpg"
             while filepath in self.get_file_list():
                 now = datetime.now()
-                dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+                dt_string = now.strftime("%d-%m-%Y_%H:%M:%S")
                 filepath =dt_string  +".jpg"
             print(filepath)
             self.receive_file(filepath, put_data)

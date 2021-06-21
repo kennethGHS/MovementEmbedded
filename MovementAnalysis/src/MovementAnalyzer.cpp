@@ -22,6 +22,7 @@ MovementAnalyzer::MovementAnalyzer(const string pipe, int intervalS, bool detect
     movements = 0;
     gpioInitPtrs();
     initSevenSegmentDisplay(2, 3, 4, 5, 6, 7, 8);
+    sevenSegmentWrite('0');
     this->semaphore = static_cast<sem_t *>(malloc(sizeof(sem_t)));
 
     sem_init(semaphore, 0, 1);
