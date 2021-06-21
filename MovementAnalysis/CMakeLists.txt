@@ -8,6 +8,6 @@ find_package(CURL REQUIRED)
 add_executable(detection main.cpp src/MovementAnalyzer.cpp lib/MovementAnalyzer.h src/HttpRequests.cpp lib/HttpRequests.h)
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
-target_link_libraries(detection ${OpenCV_LIBS}  Threads::Threads ${CURL_LIBRARIES})
+target_link_libraries(detection ${OpenCV_LIBS}  Threads::Threads ${CURL_LIBRARIES} gpio)
 
 install(TARGETS detection DESTINATION bin)

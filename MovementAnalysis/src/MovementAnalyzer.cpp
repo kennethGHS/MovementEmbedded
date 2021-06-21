@@ -5,6 +5,11 @@
 #include <sys/stat.h>
 #include "../lib/MovementAnalyzer.h"
 #include "../lib/HttpRequests.h"
+
+extern "C" {
+#include <gpio.h>
+}
+
 MovementAnalyzer::MovementAnalyzer(const string pipe, int intervalS, bool detected) : pipe(pipe),
                                                                                        frame_intervals(intervalS),
                                                                                        detected(detected) {
@@ -14,6 +19,9 @@ MovementAnalyzer::MovementAnalyzer(const string pipe, int intervalS, bool detect
         //error in opening the video input
         cerr << "Unable to open: " << endl;
     }
+    movements = 0;
+    gpioInitPtrs();
+    initSevenSegmentDisplay(2, 3, 4, 5, 6, 7, 8);
     this->semaphore = static_cast<sem_t *>(malloc(sizeof(sem_t)));
 
     sem_init(semaphore, 0, 1);
@@ -93,6 +101,11 @@ void MovementAnalyzer::analyzeImages() {
             string filename = "../Image/newPicture.jpg";
             imwrite(filename,frame);
             HttpRequests::sendPicture(filename);
+            movements += 1;
+            if (movements >= 10){
+                movements = 0;
+            }
+            sevenSegmentWrite('0'+movements);
         }
     }
 }
