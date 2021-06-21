@@ -8,6 +8,7 @@
 
 extern "C" {
     #include "../lib/gpio.h"
+    #include "stdio.h"
 }
 
 MovementAnalyzer::MovementAnalyzer(const string pipe, int intervalS, bool detected) : pipe(pipe),
@@ -19,9 +20,11 @@ MovementAnalyzer::MovementAnalyzer(const string pipe, int intervalS, bool detect
         //error in opening the video input
         cerr << "Unable to open: " << endl;
     }
+    printf("Starting");
     initSevenSegmentDisplay(2, 3, 4, 5, 6, 7, 8);
+    printf("Display ready");
     movements = 0;
-    this->semaphore = static_cast<sem_t *>(malloc(sizeof(sem_t)));
+    this->semaphore = static_cast <sem_t *>(malloc(sizeof(sem_t)));
     sem_init(semaphore, 0, 1);
 }
 
@@ -104,6 +107,7 @@ void MovementAnalyzer::analyzeImages() {
             if (movements >= 10){
                 movements = 0;
             }
+            printf("Movements: %d", movements);
 
             sevenSegmentWrite('0'+movements);
 
