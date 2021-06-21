@@ -7,6 +7,7 @@
 #include "../lib/HttpRequests.h"
 #include <gpio.h>
 
+
 MovementAnalyzer::MovementAnalyzer(const string pipe, int intervalS, bool detected) : pipe(pipe),
                                                                                        frame_intervals(intervalS),
                                                                                        detected(detected) {
@@ -61,6 +62,7 @@ bool MovementAnalyzer::isDetected() const {
 void MovementAnalyzer::analyzeImages() {
     int frameCount = 0;
     Mat frame, fgMask;
+    int movements = 0;
     while (true) {
         frameCount+=1;
 
@@ -78,6 +80,7 @@ void MovementAnalyzer::analyzeImages() {
 
         vector<Rect>boundRect (contours.size());
         vector<vector<Point> > contours_poly( contours.size() );
+        sevenSegmentWrite('0');
         for (int i = 0; i < contours.size();i++) {
             if( contourArea(contours[i])< 500)
             {
@@ -95,6 +98,16 @@ void MovementAnalyzer::analyzeImages() {
             string filename = "../Image/newPicture.jpg";
             imwrite(filename,frame);
             HttpRequests::sendPicture(filename);
-        }
+            if (movements >= 10){
+                movements = 0;
+            }
+
+            sevenSegmentWrite('0'+movements);
+
+	    }
+	
+
     }
+}
+
 }
